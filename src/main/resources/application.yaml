@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: "reeserve"
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+
+  # Liquibase
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  # Database
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/reservations
+    username: admin
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+  h2:
+    console:
+      enabled: false
+
+  # Security
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:7000/realms/reeserve
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+# Logging
+logging:
+  level:
+    web: info
+    org.hibernate.tool: info
+    liquibase: info
+
+jwt:
+  auth:
+    converter:
+      resource-id: reeserve
+      principle-attribute: preferred_username

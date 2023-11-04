@@ -1,0 +1,90 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: "Flaviu Ivanciuc"
+      changes:
+        - createTable:
+            tableName: "CUSTOMERS"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "first_name"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "last_name"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: "TABLES"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "size"
+                  type: "int"
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: "RESERVATIONS"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "customer_id"
+                  type: "bigint"
+                  constraints:
+                    referencedTableName: "CUSTOMERS"
+                    referencedColumnNames: "id"
+                    foreignKeyName: "customer_id_fk"
+                    nullable: false
+              - column:
+                  name: "created_at"
+                  type: "datetime"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "updated_at"
+                  type: "datetime"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "table_id"
+                  type: "bigint"
+                  constraints:
+                    referencedTableName: "TABLES"
+                    referencedColumnNames: "id"
+                    foreignKeyName: "table_id_fk"
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: "Flaviu Ivanciuc"
+      changes:
+        - addColumn:
+            tableName: "RESERVATIONS"
+            columns:
+              - column:
+                  name: "reserved_at"
+                  type: "datetime"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "size"
+                  type: "int"
+                  constraints:
+                    nullable: false
