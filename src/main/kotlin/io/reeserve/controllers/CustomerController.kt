@@ -87,6 +87,7 @@ class CustomerController(
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete a customer by their ID")
+    @PreAuthorize("hasRole('client_admin')")
     @ApiResponses(
         value = [
             ApiResponse(responseCode = "204", description = "Customer deleted successfully"),
