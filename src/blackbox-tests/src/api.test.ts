@@ -1,5 +1,5 @@
 import axios from "axios"
-import {getKeycloakAccessToken} from "./get-token";
+import { getKeycloakAccessToken } from "./get-token"
 
 const BASE_URL = "http://localhost:8080"
 
@@ -14,7 +14,6 @@ describe("API Blackbox Tests", () => {
                     Authorization: `Bearer ${token}`
                 }
             })
-
         } catch (err) {
             console.log(err)
         }
@@ -27,14 +26,12 @@ describe("API Blackbox Tests", () => {
         let response = undefined
 
         try {
-            const payload = {firstName: "John", lastName: "Doe"}
-            response = await axios.post(`${BASE_URL}/customers`, payload,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+            const payload = { firstName: "John", lastName: "Doe" }
+            response = await axios.post(`${BASE_URL}/customers`, payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            )
+            })
         } catch (err) {
             console.log(err)
         }
@@ -48,7 +45,8 @@ describe("API Blackbox Tests", () => {
 
         try {
             const RECORD_ID = "1"
-            response = await axios.delete(`${BASE_URL}/customers/${RECORD_ID}`,
+            response = await axios.delete(
+                `${BASE_URL}/customers/${RECORD_ID}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
