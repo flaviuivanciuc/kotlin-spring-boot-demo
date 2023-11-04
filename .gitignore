@@ -35,3 +35,16 @@ out/
 
 ### VS Code ###
 .vscode/
+
+node_modules/
+.env
+*.log
+coverage/
+test-results/
+.cache/
+*.tmp
+.idea/
+dist/
+build/
+.DS_Store
+Thumbs.db

@@ -1,4 +1,4 @@
-package io.reeserve.it
+package io.reeserve.integration_tests
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.reeserve.dto.CustomerRequestDTO
