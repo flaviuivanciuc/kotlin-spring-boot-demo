@@ -1,6 +1,7 @@
 package io.reeserve.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.reeserve.config.TestSecurityConfig
 import io.reeserve.dto.CustomerRequestDTO
 import io.reeserve.dto.CustomerResponseDTO
 import io.reeserve.exceptions.ResourceNotFoundException
@@ -12,19 +13,19 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.context.annotation.Import
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @ExtendWith(MockitoExtension::class)
-@WebMvcTest(CustomerController::class)
+@WebMvcTest(controllers = [CustomerController::class])
+@Import(TestSecurityConfig::class)
 class CustomerControllerTest {
 
     @Autowired

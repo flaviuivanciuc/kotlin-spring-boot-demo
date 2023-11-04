@@ -31,7 +31,7 @@ class SecurityConfig(
                     .anyRequest()
                     .authenticated()
             }
-            .oauth2ResourceServer {
+            .oauth2ResourceServer { it ->
                 it.jwt {
                     it.jwtAuthenticationConverter(jwtAuthConverter)
                 }
